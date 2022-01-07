@@ -1,10 +1,11 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mah="clr-namespace:MahApps.Metro.Controls"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib"
-                    mc:Ignorable="po">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mah="clr-namespace:MahApps.Metro.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="po">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
@@ -21,9 +22,10 @@
     <mah:HamburgerMenuItemStyleSelector x:Key="HamburgerMenuItemStyleSelector" />
     <mah:HamburgerMenuItemStyleSelector x:Key="HamburgerMenuItemOptionsStyleSelector" IsItemOptions="True" />
 
-    <Style x:Key="MahApps.Styles.Button.Hamburger"
-           BasedOn="{StaticResource MahApps.Styles.Button.Chromeless}"
-           TargetType="{x:Type Button}">
+    <Style
+        x:Key="MahApps.Styles.Button.Hamburger"
+        BasedOn="{StaticResource MahApps.Styles.Button.Chromeless}"
+        TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0" />
@@ -32,20 +34,23 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Grid Background="Transparent">
-                        <Grid x:Name="PART_Background"
-                              Background="{TemplateBinding Background}"
-                              Opacity="0" />
-                        <ContentPresenter x:Name="PART_ContentPresenter"
-                                          Margin="{TemplateBinding Padding}"
-                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Opacity="0.75"
-                                          RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}"
-                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Grid
+                            x:Name="PART_Background"
+                            Background="{TemplateBinding Background}"
+                            Opacity="0" />
+                        <ContentPresenter
+                            x:Name="PART_ContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Opacity="0.75"
+                            RecognizesAccessKey="{TemplateBinding mah:ControlsHelper.RecognizesAccessKey}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="PART_Background" Property="Opacity" Value="0.3" />
+                            <Setter TargetName="PART_Background" Property="Opacity" Value="1" />
+                            <Setter TargetName="PART_Background" Property="Background" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
                             <Setter TargetName="PART_ContentPresenter" Property="Opacity" Value="1" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
@@ -62,13 +67,15 @@
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
-    <QuinticEase x:Key="ScrollBarEaseInOut"
-                 EasingMode="EaseInOut"
-                 po:Freeze="true" />
+    <QuinticEase
+        x:Key="ScrollBarEaseInOut"
+        po:Freeze="true"
+        EasingMode="EaseInOut" />
 
-    <Style x:Key="MahApps.Styles.ScrollViewer.Hamburger"
-           BasedOn="{StaticResource MahApps.Styles.ScrollViewer}"
-           TargetType="{x:Type ScrollViewer}">
+    <Style
+        x:Key="MahApps.Styles.ScrollViewer.Hamburger"
+        BasedOn="{StaticResource MahApps.Styles.ScrollViewer}"
+        TargetType="{x:Type ScrollViewer}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
@@ -81,42 +88,45 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
-                                                Grid.Row="0"
-                                                Grid.Column="0"
-                                                Margin="{TemplateBinding Padding}"
-                                                CanContentScroll="{TemplateBinding CanContentScroll}"
-                                                CanHorizontallyScroll="False"
-                                                CanVerticallyScroll="False"
-                                                Content="{TemplateBinding Content}"
-                                                ContentTemplate="{TemplateBinding ContentTemplate}" />
-                        <ScrollBar x:Name="PART_VerticalScrollBar"
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.ColumnSpan="2"
-                                   HorizontalAlignment="Right"
-                                   AutomationProperties.AutomationId="VerticalScrollBar"
-                                   Cursor="Arrow"
-                                   Maximum="{TemplateBinding ScrollableHeight}"
-                                   Minimum="0"
-                                   Opacity="0"
-                                   ViewportSize="{TemplateBinding ViewportHeight}"
-                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
-                        <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                   Grid.Row="0"
-                                   Grid.RowSpan="2"
-                                   Grid.Column="0"
-                                   VerticalAlignment="Bottom"
-                                   AutomationProperties.AutomationId="HorizontalScrollBar"
-                                   Cursor="Arrow"
-                                   Maximum="{TemplateBinding ScrollableWidth}"
-                                   Minimum="0"
-                                   Opacity="0"
-                                   Orientation="Horizontal"
-                                   ViewportSize="{TemplateBinding ViewportWidth}"
-                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ScrollContentPresenter
+                            x:Name="PART_ScrollContentPresenter"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="{TemplateBinding Padding}"
+                            CanContentScroll="{TemplateBinding CanContentScroll}"
+                            CanHorizontallyScroll="False"
+                            CanVerticallyScroll="False"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ScrollBar
+                            x:Name="PART_VerticalScrollBar"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            HorizontalAlignment="Right"
+                            AutomationProperties.AutomationId="VerticalScrollBar"
+                            Cursor="Arrow"
+                            Maximum="{TemplateBinding ScrollableHeight}"
+                            Minimum="0"
+                            Opacity="0"
+                            ViewportSize="{TemplateBinding ViewportHeight}"
+                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                            Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <ScrollBar
+                            x:Name="PART_HorizontalScrollBar"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Grid.Column="0"
+                            VerticalAlignment="Bottom"
+                            AutomationProperties.AutomationId="HorizontalScrollBar"
+                            Cursor="Arrow"
+                            Maximum="{TemplateBinding ScrollableWidth}"
+                            Minimum="0"
+                            Opacity="0"
+                            Orientation="Horizontal"
+                            ViewportSize="{TemplateBinding ViewportWidth}"
+                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                            Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide" Value="True">
@@ -136,34 +146,38 @@
                             <TriggerBase.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation EasingFunction="{StaticResource ScrollBarEaseInOut}"
-                                                         Storyboard.TargetName="PART_VerticalScrollBar"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.2" />
-                                        <DoubleAnimation EasingFunction="{StaticResource ScrollBarEaseInOut}"
-                                                         Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1"
-                                                         Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            EasingFunction="{StaticResource ScrollBarEaseInOut}"
+                                            Storyboard.TargetName="PART_VerticalScrollBar"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0:0:0.2" />
+                                        <DoubleAnimation
+                                            EasingFunction="{StaticResource ScrollBarEaseInOut}"
+                                            Storyboard.TargetName="PART_HorizontalScrollBar"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </TriggerBase.EnterActions>
                             <TriggerBase.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation BeginTime="0:0:1"
-                                                         EasingFunction="{StaticResource ScrollBarEaseInOut}"
-                                                         Storyboard.TargetName="PART_VerticalScrollBar"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.5" />
-                                        <DoubleAnimation BeginTime="0:0:1"
-                                                         EasingFunction="{StaticResource ScrollBarEaseInOut}"
-                                                         Storyboard.TargetName="PART_HorizontalScrollBar"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="0"
-                                                         Duration="0:0:0.5" />
+                                        <DoubleAnimation
+                                            BeginTime="0:0:1"
+                                            EasingFunction="{StaticResource ScrollBarEaseInOut}"
+                                            Storyboard.TargetName="PART_VerticalScrollBar"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0:0:0.5" />
+                                        <DoubleAnimation
+                                            BeginTime="0:0:1"
+                                            EasingFunction="{StaticResource ScrollBarEaseInOut}"
+                                            Storyboard.TargetName="PART_HorizontalScrollBar"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="0"
+                                            Duration="0:0:0.5" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </TriggerBase.ExitActions>
@@ -175,15 +189,17 @@
     </Style>
 
     <ControlTemplate x:Key="MahApps.Templates.HamburgerMenuItem.FocusVisual">
-        <Rectangle SnapsToDevicePixels="True"
-                   Stroke="Black"
-                   StrokeThickness="2"
-                   UseLayoutRounding="True" />
+        <Rectangle
+            SnapsToDevicePixels="True"
+            Stroke="Black"
+            StrokeThickness="2"
+            UseLayoutRounding="True" />
     </ControlTemplate>
 
-    <Style x:Key="MahApps.Styles.ListBoxItem.HamburgerBase"
-           BasedOn="{StaticResource MahApps.Styles.ListBoxItem}"
-           TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MahApps.Styles.ListBoxItem.HamburgerBase"
+        BasedOn="{StaticResource MahApps.Styles.ListBoxItem}"
+        TargetType="{x:Type ListBoxItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, Path=Foreground, Mode=OneWay}" />
@@ -194,38 +210,44 @@
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuItem"
-           BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
-           TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuItem"
+        BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
+        TargetType="{x:Type ListBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:HamburgerMenu}}, Path=ItemFocusVisualStyle, Mode=OneWay, FallbackValue={x:Null}}" />
         <Setter Property="IsTabStop" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:HamburgerMenu}}, Path=IsTabStop, Mode=OneWay, FallbackValue=True}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                    <Grid x:Name="RootGrid"
-                          Background="Transparent"
-                          RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
-                        <Border x:Name="Border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <Grid
+                        x:Name="RootGrid"
+                        Background="Transparent"
+                        RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
+                        <Border
+                            x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         <Grid Margin="{TemplateBinding BorderThickness}">
-                            <Grid HorizontalAlignment="Left"
-                                  VerticalAlignment="Center"
-                                  Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:HamburgerMenu}}, Path=ShowSelectionIndicator, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Rectangle x:Name="SelectionIndicator"
-                                           Width="{DynamicResource HamburgerMenuSelectionIndicatorThemeWidth}"
-                                           Height="{DynamicResource HamburgerMenuSelectionIndicatorThemeHeight}"
-                                           Fill="{TemplateBinding Foreground}"
-                                           Focusable="False"
-                                           Opacity="0.0" />
+                            <Grid
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:HamburgerMenu}}, Path=ShowSelectionIndicator, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Rectangle
+                                    x:Name="SelectionIndicator"
+                                    Width="{DynamicResource HamburgerMenuSelectionIndicatorThemeWidth}"
+                                    Height="{DynamicResource HamburgerMenuSelectionIndicatorThemeHeight}"
+                                    Fill="{TemplateBinding Foreground}"
+                                    Focusable="False"
+                                    Opacity="0.0" />
                             </Grid>
-                            <ContentPresenter x:Name="ContentPresenter"
-                                              Margin="{TemplateBinding Padding}"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -298,9 +320,10 @@
         <Setter Property="mah:ItemHelper.SelectedBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Accent}" />
     </Style>
 
-    <Style x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuItem.CreatorsUpdate"
-           BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"
-           TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuItem.CreatorsUpdate"
+        BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"
+        TargetType="{x:Type ListBoxItem}">
         <Setter Property="mah:ItemHelper.ActiveSelectionBackgroundBrush" Value="Transparent" />
         <Setter Property="mah:ItemHelper.ActiveSelectionForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
         <Setter Property="mah:ItemHelper.DisabledForegroundBrush" Value="{DynamicResource MahApps.Brushes.Gray}" />
@@ -313,33 +336,36 @@
         <Setter Property="mah:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
     </Style>
 
-    <Style x:Key="MahApps.Styles.TextBlock.HamburgerMenuHeader"
-           BasedOn="{StaticResource MahApps.Styles.TextBlock}"
-           TargetType="{x:Type TextBlock}">
+    <Style
+        x:Key="MahApps.Styles.TextBlock.HamburgerMenuHeader"
+        BasedOn="{StaticResource MahApps.Styles.TextBlock}"
+        TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="TextWrapping" Value="NoWrap" />
     </Style>
 
-    <Style x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuHeader"
-           BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
-           TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuHeader"
+        BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
+        TargetType="{x:Type ListBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Padding" Value="8 8 0 8" />
+        <Setter Property="Padding" Value="8,8,0,8" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <TextBlock x:Name="PART_HeaderText"
-                                   Margin="{TemplateBinding Padding}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   Style="{DynamicResource MahApps.Styles.TextBlock.HamburgerMenuHeader}"
-                                   Text="{Binding Label}" />
+                        <TextBlock
+                            x:Name="PART_HeaderText"
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Style="{DynamicResource MahApps.Styles.TextBlock.HamburgerMenuHeader}"
+                            Text="{Binding Label}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsPaneOpen, RelativeSource={RelativeSource AncestorType=mah:HamburgerMenu}}" Value="False">
@@ -351,31 +377,34 @@
         </Setter>
     </Style>
 
-    <Style x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuSeparator"
-           BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
-           TargetType="{x:Type ListBoxItem}">
+    <Style
+        x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuSeparator"
+        BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerBase}"
+        TargetType="{x:Type ListBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Padding" Value="0 5" />
+        <Setter Property="Padding" Value="0,5" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid Background="{TemplateBinding Background}" RenderOptions.ClearTypeHint="{TemplateBinding RenderOptions.ClearTypeHint}">
-                        <Separator Margin="{TemplateBinding Padding}"
-                                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <Separator
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="MahApps.Styles.ListBox.HamburgerMenu"
-           BasedOn="{StaticResource MahApps.Styles.ListBox}"
-           TargetType="{x:Type ListBox}">
+    <Style
+        x:Key="MahApps.Styles.ListBox.HamburgerMenu"
+        BasedOn="{StaticResource MahApps.Styles.ListBox}"
+        TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -384,19 +413,21 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBox}">
-                    <Border Name="Border"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
-                        <ScrollViewer Padding="{TemplateBinding Padding}"
-                                      mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide="{TemplateBinding mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide}"
-                                      CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}"
-                                      Focusable="False"
-                                      HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                      SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                      Style="{StaticResource MahApps.Styles.ScrollViewer.Hamburger}"
-                                      VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                    <Border
+                        Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ScrollViewer
+                            Padding="{TemplateBinding Padding}"
+                            mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide="{TemplateBinding mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide}"
+                            CanContentScroll="{TemplateBinding ScrollViewer.CanContentScroll}"
+                            Focusable="False"
+                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                            Style="{StaticResource MahApps.Styles.ScrollViewer.Hamburger}"
+                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
                             <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                         </ScrollViewer>
                     </Border>
@@ -415,101 +446,110 @@
         <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="False" />
     </Style>
 
-    <Style x:Key="MahApps.Styles.HamburgerMenuListBox"
-           BasedOn="{StaticResource MahApps.Styles.ListBox.HamburgerMenu}"
-           TargetType="{x:Type mah:HamburgerMenuListBox}" />
+    <Style
+        x:Key="MahApps.Styles.HamburgerMenuListBox"
+        BasedOn="{StaticResource MahApps.Styles.ListBox.HamburgerMenu}"
+        TargetType="{x:Type mah:HamburgerMenuListBox}" />
 
     <ControlTemplate x:Key="MahApps.Templates.HamburgerMenu" TargetType="{x:Type mah:HamburgerMenu}">
         <Grid>
-            <mah:SplitView x:Name="MainSplitView"
-                           CanResizeOpenPane="{TemplateBinding CanResizeOpenPane}"
-                           CompactPaneLength="{TemplateBinding CompactPaneLength}"
-                           DisplayMode="{TemplateBinding DisplayMode}"
-                           IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                           IsTabStop="False"
-                           MaximumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MaximumOpenPaneLength}"
-                           MinimumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MinimumOpenPaneLength}"
-                           OpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OpenPaneLength, Mode=TwoWay}"
-                           PaneBackground="{TemplateBinding PaneBackground}"
-                           PaneForeground="{TemplateBinding PaneForeground}"
-                           PanePlacement="{TemplateBinding PanePlacement}"
-                           ResizeThumbStyle="{TemplateBinding ResizeThumbStyle}">
+            <mah:SplitView
+                x:Name="MainSplitView"
+                CanResizeOpenPane="{TemplateBinding CanResizeOpenPane}"
+                CompactPaneLength="{TemplateBinding CompactPaneLength}"
+                DisplayMode="{TemplateBinding DisplayMode}"
+                IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                IsTabStop="False"
+                MaximumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MaximumOpenPaneLength}"
+                MinimumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MinimumOpenPaneLength}"
+                OpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OpenPaneLength, Mode=TwoWay}"
+                PaneBackground="{TemplateBinding PaneBackground}"
+                PaneForeground="{TemplateBinding PaneForeground}"
+                PanePlacement="{TemplateBinding PanePlacement}"
+                ResizeThumbStyle="{TemplateBinding ResizeThumbStyle}">
                 <mah:SplitView.Pane>
                     <Grid x:Name="PaneGrid" Margin="{TemplateBinding PaneMargin}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
-                        <DockPanel x:Name="PaneHeader"
-                                   Grid.Row="0"
-                                   Margin="{TemplateBinding PaneHeaderMargin}"
-                                   LastChildFill="True">
-                            <Button x:Name="HamburgerButton"
-                                    Width="{TemplateBinding HamburgerWidth}"
-                                    Height="{TemplateBinding HamburgerHeight}"
-                                    Padding="{TemplateBinding HamburgerMargin}"
-                                    AutomationProperties.AutomationId="HamburgerButton"
-                                    AutomationProperties.HelpText="{TemplateBinding HamburgerButtonHelpText}"
-                                    AutomationProperties.Name="{TemplateBinding HamburgerButtonName}"
-                                    ContentTemplate="{TemplateBinding HamburgerButtonTemplate}"
-                                    DockPanel.Dock="Left"
-                                    Foreground="{TemplateBinding PaneForeground}"
-                                    IsTabStop="{TemplateBinding IsTabStop}"
-                                    Style="{TemplateBinding HamburgerButtonStyle}"
-                                    TabIndex="0"
-                                    Visibility="{TemplateBinding HamburgerVisibility}" />
-                            <ContentControl x:Name="PaneHeaderContent"
-                                            ContentTemplate="{TemplateBinding HamburgerMenuHeaderTemplate}"
-                                            IsTabStop="False" />
+                        <DockPanel
+                            x:Name="PaneHeader"
+                            Grid.Row="0"
+                            Margin="{TemplateBinding PaneHeaderMargin}"
+                            LastChildFill="True">
+                            <ContentControl
+                                x:Name="PaneHeaderContent"
+                                ContentTemplate="{TemplateBinding HamburgerMenuHeaderTemplate}"
+                                IsTabStop="False" />
                         </DockPanel>
-                        <mah:HamburgerMenuListBox x:Name="ButtonsListView"
-                                                  Grid.Row="1"
-                                                  Width="{TemplateBinding OpenPaneLength}"
-                                                  mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide="{TemplateBinding VerticalScrollBarOnLeftSide}"
-                                                  AutomationProperties.Name="Menu items"
-                                                  Foreground="{TemplateBinding PaneForeground}"
-                                                  IsTextSearchEnabled="False"
-                                                  ItemContainerStyleSelector="{StaticResource HamburgerMenuItemStyleSelector}"
-                                                  ItemTemplate="{TemplateBinding ItemTemplate}"
-                                                  ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                                                  ItemsSource="{TemplateBinding ItemsSource}"
-                                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                                  SelectedIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedIndex, Mode=TwoWay}"
-                                                  SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem, Mode=TwoWay}"
-                                                  SelectionMode="Single"
-                                                  TabIndex="1" />
-                        <mah:HamburgerMenuListBox x:Name="OptionsListView"
-                                                  Grid.Row="2"
-                                                  Width="{TemplateBinding OpenPaneLength}"
-                                                  Margin="0 20 0 0"
-                                                  VerticalAlignment="Bottom"
-                                                  AutomationProperties.Name="Option items"
-                                                  Foreground="{TemplateBinding PaneForeground}"
-                                                  IsTextSearchEnabled="False"
-                                                  ItemContainerStyleSelector="{StaticResource HamburgerMenuItemOptionsStyleSelector}"
-                                                  ItemTemplate="{TemplateBinding OptionsItemTemplate}"
-                                                  ItemTemplateSelector="{TemplateBinding OptionsItemTemplateSelector}"
-                                                  ItemsSource="{TemplateBinding OptionsItemsSource}"
-                                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                                  SelectedIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsIndex, Mode=TwoWay}"
-                                                  SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsItem, Mode=TwoWay}"
-                                                  SelectionMode="Single"
-                                                  TabIndex="2" />
+                        <mah:HamburgerMenuListBox
+                            x:Name="ButtonsListView"
+                            Grid.Row="1"
+                            Width="{TemplateBinding OpenPaneLength}"
+                            mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide="{TemplateBinding VerticalScrollBarOnLeftSide}"
+                            AutomationProperties.Name="Menu items"
+                            Foreground="{TemplateBinding PaneForeground}"
+                            IsTextSearchEnabled="False"
+                            ItemContainerStyleSelector="{StaticResource HamburgerMenuItemStyleSelector}"
+                            ItemTemplate="{TemplateBinding ItemTemplate}"
+                            ItemTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            ItemsSource="{TemplateBinding ItemsSource}"
+                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                            SelectedIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedIndex, Mode=TwoWay}"
+                            SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedItem, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            TabIndex="1" />
+                        <mah:HamburgerMenuListBox
+                            x:Name="OptionsListView"
+                            Grid.Row="2"
+                            Width="{TemplateBinding OpenPaneLength}"
+                            Margin="0,20,0,0"
+                            VerticalAlignment="Bottom"
+                            AutomationProperties.Name="Option items"
+                            Foreground="{TemplateBinding PaneForeground}"
+                            IsTextSearchEnabled="False"
+                            ItemContainerStyleSelector="{StaticResource HamburgerMenuItemOptionsStyleSelector}"
+                            ItemTemplate="{TemplateBinding OptionsItemTemplate}"
+                            ItemTemplateSelector="{TemplateBinding OptionsItemTemplateSelector}"
+                            ItemsSource="{TemplateBinding OptionsItemsSource}"
+                            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                            SelectedIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsIndex, Mode=TwoWay}"
+                            SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsItem, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            TabIndex="2" />
+                        <Button
+                            x:Name="HamburgerButton"
+                            Grid.Row="3"
+                            Width="{TemplateBinding OpenPaneLength}"
+                            Height="{TemplateBinding HamburgerHeight}"
+                            Padding="{TemplateBinding HamburgerMargin}"
+                            AutomationProperties.AutomationId="HamburgerButton"
+                            AutomationProperties.HelpText="{TemplateBinding HamburgerButtonHelpText}"
+                            AutomationProperties.Name="{TemplateBinding HamburgerButtonName}"
+                            ContentTemplate="{TemplateBinding HamburgerButtonTemplate}"
+                            Foreground="{TemplateBinding PaneForeground}"
+                            IsTabStop="{TemplateBinding IsTabStop}"
+                            Style="{TemplateBinding HamburgerButtonStyle}"
+                            TabIndex="3"
+                            Visibility="{TemplateBinding HamburgerVisibility}" />
                     </Grid>
                 </mah:SplitView.Pane>
-                <mah:TransitioningContentControl x:Name="ContentPart"
-                                                 Padding="{TemplateBinding Padding}"
-                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                                 AutomationProperties.Name="Content"
-                                                 Content="{TemplateBinding Content}"
-                                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                                 RestartTransitionOnContentChange="True"
-                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                 Transition="{TemplateBinding ContentTransition}" />
+                <mah:TransitioningContentControl
+                    x:Name="ContentPart"
+                    Padding="{TemplateBinding Padding}"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    AutomationProperties.Name="Content"
+                    Content="{TemplateBinding Content}"
+                    ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                    RestartTransitionOnContentChange="True"
+                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                    Transition="{TemplateBinding ContentTransition}" />
             </mah:SplitView>
         </Grid>
         <ControlTemplate.Triggers>

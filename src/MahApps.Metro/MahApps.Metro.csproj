@@ -7,6 +7,10 @@
         <RootNamespace>MahApps.Metro</RootNamespace>
         <DefaultItemExcludes>$(DefaultItemExcludes);**\*.Template.xaml</DefaultItemExcludes>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <Version>2.4.9.2</Version>
+        <PackageId>CodePlus.MahApps.Metro</PackageId>
+        <AssemblyVersion>2.4.9.2</AssemblyVersion>
+        <FileVersion>2.4.9.2</FileVersion>
     </PropertyGroup>
 
     <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
